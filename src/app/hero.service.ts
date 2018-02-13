@@ -11,12 +11,12 @@ import { MessageService } from './message.service';
 @Injectable()
 export class HeroService {
 
-  getHeroes(): Observable<Hero[]> {
-    // Todo: send the message __after__ fetchung the heroes
-    this.messageService.add('HeroService: fetched heroes');
-    return of(HEROES);
-  }
+    getHeroes(): Observable<Hero[]> {
+        // TODO: send the message __after__ fetchung the heroes
+        this.messageService.add('HeroService: fetched heroes');
+        return of(HEROES);
+    }
 
-  constructor(private messageService: MessageService) { }
+    constructor(private messageService: MessageService) { }
 
 }
