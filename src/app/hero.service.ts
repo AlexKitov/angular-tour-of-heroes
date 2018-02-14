@@ -10,9 +10,15 @@ import { MessageService } from './message.service';
 
 @Injectable()
 export class HeroService {
+  
+    getHero(id: number): Observable<Hero> {
+        // Todo: send the message __after__ fetchung the heroes
+        this.messageService.add(`HeroService: fetched heroe id=${id}`);
+        return of(HEROES.find(hero => hero.id === id));
+    }
 
     getHeroes(): Observable<Hero[]> {
-        // TODO: send the message __after__ fetchung the heroes
+        // Todo: send the message __after__ fetchung the heroes
         this.messageService.add('HeroService: fetched heroes');
         return of(HEROES);
     }
