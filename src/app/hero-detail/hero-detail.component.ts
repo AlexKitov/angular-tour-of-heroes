@@ -1,3 +1,7 @@
+import { HeroService } from './../hero.service';
+import { Location } from '@angular/common';
+import { ActivatedRoute } from '@angular/router';
+
 import { Hero } from './../hero';
 import { Component, OnInit, Input } from '@angular/core';
 
@@ -10,7 +14,11 @@ export class HeroDetailComponent implements OnInit {
 
   @Input() hero: Hero;
 
-  constructor() { }
+  constructor(
+      private router: ActivatedRoute,
+      private heroService: HeroService,
+      private location: Location
+  ) { }
 
   ngOnInit() {
   }
