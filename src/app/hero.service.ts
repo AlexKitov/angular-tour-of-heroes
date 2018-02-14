@@ -10,7 +10,7 @@ import { MessageService } from './message.service';
 
 @Injectable()
 export class HeroService {
-
+  
     getHero(id: number): Observable<Hero> {
         // Todo: send the message __after__ fetchung the heroes
         this.messageService.add(`HeroService: fetched heroe id=${id}`);
