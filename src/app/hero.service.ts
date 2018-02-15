@@ -11,10 +11,22 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { catchError, map, tap } from 'rxjs/operators';
 
+
+const httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+};
+
 @Injectable()
 export class HeroService {
 
     private heroesUrl = 'api/heroes'; // URL to web api
+
+    updateHero(hero: Hero): Observable<any> {
+        return this.http.put(this.heroesUrl, hero, httpOptions).pipe(
+            tap(_ => this.log(`updated hero id=${hero.id}`)),
+            catchError(this.handleError<any>('updateHero'))
+        );
+    }
 
     /** GET hero by id. Will 404 if id not found */
     getHero(id: number): Observable<Hero> {
