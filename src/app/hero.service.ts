@@ -8,9 +8,11 @@ import { of } from 'rxjs/observable/of';
 
 import { MessageService } from './message.service';
 
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+
 @Injectable()
 export class HeroService {
-  
+
     getHero(id: number): Observable<Hero> {
         // Todo: send the message __after__ fetchung the heroes
         this.messageService.add(`HeroService: fetched heroe id=${id}`);
@@ -23,6 +25,8 @@ export class HeroService {
         return of(HEROES);
     }
 
-    constructor(private messageService: MessageService) { }
+    constructor(
+        private http: HttpClient,
+        private messageService: MessageService) { }
 
 }
