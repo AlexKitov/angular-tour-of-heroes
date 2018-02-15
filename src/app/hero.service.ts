@@ -21,6 +21,16 @@ export class HeroService {
 
     private heroesUrl = 'api/heroes'; // URL to web api
 
+    deleteHero(hero: Hero | number): Observable<Hero> {
+        const id = typeof hero === 'number' ? hero : hero.id;
+        const url = `${this.heroesUrl}/${id}`;
+
+        return this.http.delete<Hero>(url, httpOptions).pipe(
+            tap(_ => this.log(`delete hero id=${id}`)),
+            catchError(this.handleError<Hero>('deleteHero'))
+        );
+    }
+
     updateHero(hero: Hero): Observable<any> {
         return this.http.put(this.heroesUrl, hero, httpOptions).pipe(
             tap(_ => this.log(`updated hero id=${hero.id}`)),
