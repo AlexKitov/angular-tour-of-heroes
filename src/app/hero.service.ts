@@ -28,6 +28,13 @@ export class HeroService {
         );
     }
 
+    addHero(hero: Hero): Observable<Hero> {
+        return this.http.post<Hero>(this.heroesUrl, hero, httpOptions).pipe(
+            tap((heroCreated: Hero) => this.log(`added hero w/ id=${heroCreated.id}`)),
+            catchError(this.handleError<Hero>('addHero'))
+        );
+    }
+
     /** GET hero by id. Will 404 if id not found */
     getHero(id: number): Observable<Hero> {
         const url = `${this.heroesUrl}/${id}`;
